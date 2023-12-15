@@ -13,7 +13,7 @@ function editUser() {
     } 
     console.log(JSON.stringify(data));
     $.ajax({
-        url: 'http://localhost:8080/Admin/EditUser',
+        url: 'https://global-memento-407716.uc.r.appspot.com/Admin/EditUser',
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
