@@ -1,6 +1,6 @@
 $(document).ready(function(){
 var xhr = new XMLHttpRequest() ; 
-xhr.open("GET" , "http://localhost:8080/Admin/GetNumberOfBuses" , true ); 
+xhr.open("GET" , "https://global-memento-407716.uc.r.appspot.com/Admin/GetNumberOfBuses" , true );
 xhr.onreadystatechange = function () { 
     if(xhr.readyState == 4 && xhr.status == 200) {
         document.getElementById("numberOfBus").innerHTML = xhr.responseText; 
@@ -11,7 +11,7 @@ xhr.send() ;
 
 $(document).ready(function(){
     var xhr = new XMLHttpRequest();
-    xhr.open("GET", "http://localhost:8080/Admin/GetAllBuses" , true);
+    xhr.open("GET", "https://global-memento-407716.uc.r.appspot.com/Admin/GetAllBuses" , true);
     xhr.onreadystatechange = function() {
         if (xhr.readyState == 4 && xhr.status == 200) {
             var bus = JSON.parse(xhr.responseText);
@@ -50,7 +50,7 @@ $(document).ready(function(){
         busIdInput.value = data.id;
         $(document).ready(function(){
             const driver = document.getElementById("driverName") ; 
-            xhr.open("Get" , "http://localhost:8080/Admin/GetUser?role=2" , true) ;
+            xhr.open("Get" , "https://global-memento-407716.uc.r.appspot.com/Admin/GetUser?role=2" , true) ;
             xhr.onreadystatechange = function(){
                 if(xhr.readyState == 4 && xhr.status == 200) { 
                     driverData = JSON.parse(xhr.responseText);
@@ -86,7 +86,7 @@ $('#example').on('click', '.delete-button', function() {
         isWorking : data.isWorking
     };
     $.ajax({
-        url: "http://localhost:8080/Admin/DeleteBus",
+        url: "https://global-memento-407716.uc.r.appspot.com/Admin/DeleteBus",
         method: "POST",
         data: JSON.stringify(dataPas),
         headers: {
@@ -108,7 +108,7 @@ $('#example').on('click', '.delete-button', function() {
         $(document).ready(function(){
             var xhr = new XMLHttpRequest() ;
             const driver = document.getElementById("driverSelect") ; 
-            xhr.open("Get" , "http://localhost:8080/Admin/GetUser?role=2" , true) ;
+            xhr.open("Get" , "https://global-memento-407716.uc.r.appspot.com/Admin/GetUser?role=2" , true) ;
             xhr.onreadystatechange = function(){
                 if(xhr.readyState == 4 && xhr.status == 200) { 
                     driverData = JSON.parse(xhr.responseText);
@@ -138,7 +138,7 @@ $('#example').on('click', '.delete-button', function() {
         }
         JSON.stringify(bus.driver);
         $.ajax({
-            url: "http://localhost:8080/Admin/EditBus",
+            url: "https://global-memento-407716.uc.r.appspot.com/Admin/EditBus",
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -173,7 +173,7 @@ $('#example').on('click', '.delete-button', function() {
         };
         JSON.stringify(data.driver); 
         $.ajax({
-            url: "http://localhost:8080/Admin/AddBus",
+            url: "https://global-memento-407716.uc.r.appspot.com/Admin/AddBus",
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

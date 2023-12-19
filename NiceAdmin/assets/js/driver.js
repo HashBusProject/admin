@@ -1,6 +1,6 @@
 $(document).ready(function(){
     var xhr = new XMLHttpRequest() ; 
-    xhr.open("Get" , "http://localhost:8080/Admin/GetNumberOfUserByRole?role=2" , true) ;
+    xhr.open("Get" , "https://global-memento-407716.uc.r.appspot.com/Admin/GetNumberOfUserByRole?role=2" , true) ;
     xhr.onreadystatechange = function(){
         if(xhr.readyState == 4 && xhr.status == 200) { 
             data = xhr.responseText;
@@ -13,7 +13,7 @@ $(document).ready(function(){
 
 $(document).ready(function() {
     var xhr = new XMLHttpRequest();
-    xhr.open("GET", "http://localhost:8080/Admin/GetUser?role=2");
+    xhr.open("GET", "https://global-memento-407716.uc.r.appspot.com/Admin/GetUser?role=2");
     xhr.onreadystatechange = function() {
         if (xhr.readyState == 4 && xhr.status == 200) {
             var persons = JSON.parse(xhr.responseText);
@@ -59,7 +59,7 @@ $(document).ready(function() {
         } 
         console.log(JSON.stringify(data));
         $.ajax({
-            url: 'http://localhost:8080/Admin/EditUser',
+            url: 'https://global-memento-407716.uc.r.appspot.com/Admin/EditUser',
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -99,7 +99,7 @@ $(document).ready(function() {
         }
         console.log(id);
         $.ajax({
-            url : "http://localhost:8080/Admin/DeleteUser" ,
+            url : "https://global-memento-407716.uc.r.appspot.com/Admin/DeleteUser" ,
             method :"POST" ,
             data : JSON.stringify(id),
             headers: {

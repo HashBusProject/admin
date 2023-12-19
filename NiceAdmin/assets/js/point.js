@@ -1,6 +1,6 @@
 $(document).ready(function(){
     var xhr = new XMLHttpRequest() ; 
-    xhr.open("GET" , "http://localhost:8080/Admin/GetNumberOfPoint" , true) ; 
+    xhr.open("GET" , "https://global-memento-407716.uc.r.appspot.com/Admin/GetNumberOfPoint" , true) ;
     xhr.onreadystatechange = function(){
         if(xhr.readyState == 4 && xhr.status == 200) { 
             data = xhr.responseText;
@@ -13,7 +13,7 @@ $(document).ready(function(){
 
 $(document).ready(function() {
     $.ajax({
-        url: "http://localhost:8080/Admin/GetAllPoint",
+        url: "https://global-memento-407716.uc.r.appspot.com/Admin/GetAllPoint",
         method: "GET",
         success: function(persons) {
             $("#example").DataTable({
@@ -45,7 +45,7 @@ $(document).ready(function() {
         };
         alert(point_id.id);
         $.ajax({
-            url: "http://localhost:8080/Admin/DeletePoint",
+            url: "https://global-memento-407716.uc.r.appspot.com/Admin/DeletePoint",
             method: "POST",
             data: JSON.stringify(point_id),
             contentType: 'application/json',
@@ -82,7 +82,7 @@ function addPoint() {
         y: y,
     };
     $.ajax({
-        url: "http://localhost:8080/Admin/AddStopPoint",
+        url: "https://global-memento-407716.uc.r.appspot.com/Admin/AddStopPoint",
         method: "POST",
         headers: {
             "Content-Type": "application/json",
