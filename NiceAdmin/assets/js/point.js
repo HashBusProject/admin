@@ -51,8 +51,8 @@ $(document).ready(function() {
             contentType: 'application/json',
             success: function(data) {
                 if(data){
-                     alert("Point Was Deleted") ; 
-                     window.location.reload() ;
+                    alert("Point Was Deleted") ; 
+                    window.location.reload() ;
                 }else {
                     alert("Error") ; 
 

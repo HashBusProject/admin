@@ -24,7 +24,6 @@
   <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
   <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
 
   <link href="assets/css/style.css" rel="stylesheet">
 
@@ -91,17 +90,12 @@
         </ul>
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#bus-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-menu-button-wide"></i><span>Schedules </span><i class="bi bi-chevron-down ms-auto"></i>
+          <i class="bi bi-menu-button-wide"></i><span>bus Management</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="bus-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
             <a href="addbus.html">
-              <i class="bi bi-circle"></i><span>Add Journey</span>
-            </a>
-          </li>
-          <li>
-            <a href="Ticket.html">
-              <i class="bi bi-circle"></i><span>Ticket</span>
+              <i class="bi bi-circle"></i><span>Add bus</span>
             </a>
           </li>
         </ul>
@@ -130,7 +124,7 @@
   </aside>
   <main id="main" class="main">
     <div class="pagetitle">
-      <h1>Journey </h1>
+      <h1>Bus</h1>
     
     </div><!-- End Page Title -->
     <section class="section dashboard">
@@ -142,13 +136,13 @@
             <div class="col-xxl-4 col-md-6">
               <div class="card info-card sales-card">
                 <div class="card-body">
-                  <h5 class="card-title">Number of Journey </h5>
+                  <h5 class="card-title">Number of bus</h5>
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                      <i class="fas fa-route"></i>
+                      <i class="bi bi-bus-front"></i>
                     </div>
                     <div class="ps-3">
-                      <h6 id="numberOfJourneys"></h6>
+                      <h6 id="numberOfBus"></h6>
                     </div>
                   </div>
                 </div>
@@ -157,41 +151,34 @@
             </div><!-- End Sales Card -->
           </div>
         </div>
-        <button type="button" onclick="showAddFeild()" class="btn btn-danger rounded-pill col-lg-7 mx-auto" style="margin: 10px;">Add Journey</button>
+        <button type="button" onclick="showAddFeild()" class="btn btn-danger rounded-pill col-lg-7 mx-auto" style="margin: 10px;">Add Bus</button>
       </div>
-      <div class="modal fade" id="addJourney" tabindex="-1" aria-labelledby="addUserModalLabel" aria-hidden="true">
+      <div class="modal fade" id="addBusModal" tabindex="-1" aria-labelledby="addUserModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="userModalLabel">Add Journey</h5>
+              <h5 class="modal-title" id="userModalLabel">Add Bus</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
               <form id="addUserForm">
-                <input type="text" id="idBus" hidden>
                 <div class="mb-3">
-                  <label for="sourcePoint" class="form-label">source point</label>
-                  <select id="sourcePoint" class="form-select">
+                  <label for="inputState" class="form-label">Driver</label>
+                  <select id="driverSelect" class="form-select">
                   </select>
                 </div>
                 <div class="mb-3">
-                  <label for="editEmail" class="form-label">destination point</label>
-                  <select id="isWorking" class="form-select">
+                  <label for="editEmail" class="form-label">Is Working:</label>
+                  <select id="isWorkingSelect" class="form-select">
+                    <option value="True">True</option>
+                    <option value="False">False</option>
                   </select>
                 </div>
                 <div class="mb-3">
-                  <label for="userName" class="form-label">Journey Name</label>
-                  <input type="text" class="form-control" id="addPointName" required>
+                  <button type="submit" id="addBtn" onclick="addBus()" class="btn btn-primary">Save
+                    changes</button>
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                 </div>
-                <div class="mb-3">
-                  <label for="ticketPrice" class="form-label">Ticket price</label>
-                  <input type="text" class="form-control" id="addPointName" required>
-                </div>
-                <div class="mb-3">
-                  <button type="submit" id="editbtn" onclick="editBus()" class="btn btn-primary">Save changes</button>
-                  <button type="button" class="btn btn-secondary" onclick="deleteField()"
-                    data-bs-dismiss="modal">Cancel</button>
-                </div>  
               </form>
             </div>
           </div>
@@ -208,27 +195,16 @@
               <form id="editUserForm">
                 <input type="text" id="idBus" hidden>
                 <div class="mb-3">
-                  <label for="sourcePoint" class="form-label">source point</label>
-                  <select id="sourcePoint" class="form-select">
+                  <label for="inputState" class="form-label">Driver</label>
+                  <select id="driverName" class="form-select">
                   </select>
                 </div>
                 <div class="mb-3">
-                  <label for="editEmail" class="form-label">destination point</label>
+                  <label for="editEmail" class="form-label">Is Working:</label>
                   <select id="isWorking" class="form-select">
+                    <option value="True">True</option>
+                    <option value="False">False</option>
                   </select>
-                </div>
-                <div class="mb-3">
-                  <label for="editEmail" class="form-label">destination point</label>
-                  <select id="isWorking" class="form-select">
-                  </select>
-                </div>
-                <div class="mb-3">
-                  <label for="userName" class="form-label">Journey Name</label>
-                  <input type="text" class="form-control" id="addPointName" required>
-                </div>
-                <div class="mb-3">
-                  <label for="ticketPrice" class="form-label">Ticket price</label>
-                  <input type="text" class="form-control" id="addPointName" required>
                 </div>
                 <div class="mb-3">
                   <button type="submit" id="editbtn" onclick="editBus()" class="btn btn-primary">Save changes</button>
@@ -243,24 +219,17 @@
       <table id="example" class="table table-striped" style="width:100%">
         <thead>
           <th>Id</th>
-          <th>Journey Name </th>
-          <th>source point ID</th>
-          <th>destination point ID</th>
-          <th>Ticket price </th>
-          <th>Edit </th>
-          <th>Delete </th>
-
-
+          <th>Driver ID</th>
+          <th>Is Working</th>
+          <th>Edit</th>
+          <th>Delete</th>
         </thead>
         <tfoot>
           <th>Id</th>
-          <th>Journey Name </th>
-          <th>source point ID</th>
-          <th>destination point ID</th>
-          <th>Ticket price </th>
-          <th>Edit </th>
-          <th>Delete </th>
-
+          <th>Driver ID</th>
+          <th>Is Working</th>
+          <th>Edit</th>
+          <th>Delete</th>
         </tfoot>
       </table>
     </section>
@@ -268,14 +237,14 @@
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">
     <div class="copyright">
-      &copy; Copyright <strong><span>HashBus</span></strong>. All Rights Reserved
+      &copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
     </div>
     <div class="credits">
       <!-- All the links in the footer should remain intact. -->
       <!-- You can delete the links only if you purchased the pro version. -->
       <!-- Licensing information: https://bootstrapmade.com/license/ -->
       <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-      Designed by Rafat Maita
+      Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
     </div>
   </footer><!-- End Footer -->
 

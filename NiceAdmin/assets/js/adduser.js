@@ -12,7 +12,7 @@ function addUser(){
         role : selectElement + 1 
     } 
     $.ajax({
-        url : "https://global-memento-407716.uc.r.appspot.com/Admin/AddUser",
+        url : "http://localhost:8080/Admin/AddUser",
         method : "POST" , 
         data : JSON.stringify(data), 
         headers: {
@@ -31,7 +31,7 @@ function addUser(){
 
 $(document).ready(function(){
     var xhr = new XMLHttpRequest() ; 
-    xhr.open("Get" , "https://global-memento-407716.uc.r.appspot.com/Admin/GetNumberOfUser" , true) ;
+    xhr.open("Get" , "http://localhost:8080/Admin/GetNumberOfUser" , true) ;
     xhr.onreadystatechange = function(){
         if(xhr.readyState == 4 && xhr.status == 200) { 
             data = xhr.responseText;
