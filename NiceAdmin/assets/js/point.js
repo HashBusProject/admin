@@ -1,6 +1,8 @@
+var url = "https://global-memento-407716.uc.r.appspot.com" ;
+
 $(document).ready(function(){
     var xhr = new XMLHttpRequest() ; 
-    xhr.open("GET" , "https://global-memento-407716.uc.r.appspot.com/Admin/GetNumberOfPoint" , true) ;
+    xhr.open("GET" , url + "/Admin/GetNumberOfPoint" , true) ;
     xhr.onreadystatechange = function(){
         if(xhr.readyState == 4 && xhr.status == 200) { 
             data = xhr.responseText;
@@ -29,41 +31,8 @@ $(document).ready(function() {
         error: function(error) {
             console.error("Error fetching data:", error);
         }
+    })
     });
-
-    // Event handling for edit button
-    $('#example').on('click', '.edit-button', function() {
-        var data = $("#example").DataTable().row($(this).parents('tr')).data();
-        // Your edit button logic here
-    });
-
-    // Event handling for delete button
-    $('#example').on('click', '.delete-button', function() {
-        var data = $("#example").DataTable().row($(this).parents('tr')).data();
-        var point_id = {
-            id: data.id
-        };
-        alert(point_id.id);
-        $.ajax({
-            url: "https://global-memento-407716.uc.r.appspot.com/Admin/DeletePoint",
-            method: "POST",
-            data: JSON.stringify(point_id),
-            contentType: 'application/json',
-            success: function(data) {
-                if(data){
-                    alert("Point Was Deleted") ; 
-                    window.location.reload() ;
-                }else {
-                    alert("Error") ; 
-
-                }
-            },
-            error: function(error) {
-                alert ("Error deleting user:", error);
-            }
-        });
-    });
-});
 
 function showAddFeild(){
     document.getElementById("addPointName").value = "";
@@ -82,7 +51,7 @@ function addPoint() {
         y: y,
     };
     $.ajax({
-        url: "https://global-memento-407716.uc.r.appspot.com/Admin/AddStopPoint",
+        url: url + "/Admin/AddStopPoint",
         method: "POST",
         headers: {
             "Content-Type": "application/json",

@@ -1,3 +1,5 @@
+var url = "https://global-memento-407716.uc.r.appspot.com" ;
+
 function addUser(){
     var name = document.getElementById("addName").value;
     var username = document.getElementById("addUserName").value;
@@ -12,14 +14,14 @@ function addUser(){
         role : selectElement + 1 
     } 
     $.ajax({
-        url : "https://global-memento-407716.uc.r.appspot.com/Admin/AddUser",
+        url : url + "/Admin/AddUser",
         method : "POST" , 
         data : JSON.stringify(data), 
         headers: {
             'Content-Type': 'application/json',
          },    
             success: function (data) {
-                console.log("Success:", data);
+                window.location.reload() ; 
                 alert("User Added Successfully!!");
             },
         error: function (error) {
@@ -31,7 +33,7 @@ function addUser(){
 
 $(document).ready(function(){
     var xhr = new XMLHttpRequest() ; 
-    xhr.open("Get" , "https://global-memento-407716.uc.r.appspot.com/Admin/GetNumberOfUser" , true) ;
+    xhr.open("Get" , url + "/Admin/GetNumberOfUser" , true) ;
     xhr.onreadystatechange = function(){
         if(xhr.readyState == 4 && xhr.status == 200) { 
             data = xhr.responseText;
