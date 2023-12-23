@@ -9,8 +9,7 @@ function editUser() {
         name : editName , 
         username : editUserName , 
         email : editEmail , 
-        password : "admin"
-    } 
+    }
     $.ajax({
         url: url + '/Admin/EditUser',
         method: 'POST',
