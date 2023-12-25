@@ -15,7 +15,7 @@ $(document).ready(function(){
 
 $(document).ready(function() {
     $.ajax({
-        url: "https://global-memento-407716.uc.r.appspot.com/Admin/GetAllPoint",
+        url: url + "/Admin/GetAllPoint",
         method: "GET",
         success: function(persons) {
             $("#example").DataTable({
