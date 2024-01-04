@@ -75,16 +75,23 @@ $(document).ready(function(){
             }
             xhr.send();
         });        
-        // editId.value = data.userID;
         $('#editUserModal').modal('show');
 });
 $('#example').on('click', '.delete-button', function() {
     var data = $("#example").DataTable().row($(this).parents('tr')).data();
+
+    var isConfirmed = confirm("Are you sure you want to delete this bus?");
+
+    if (!isConfirmed) {
+        return;
+    }
+
     var dataPas = {
-        id: data.id ,  
-        driverID : data.driverID , 
-        isWorking : data.isWorking
+        id: data.id,  
+        driverID: data.driverID,
+        isWorking: data.isWorking
     };
+
     $.ajax({
         url: "https://global-memento-407716.uc.r.appspot.com/Admin/DeleteBus",
         method: "POST",
@@ -94,14 +101,15 @@ $('#example').on('click', '.delete-button', function() {
         },
         success: function(response) {
             alert("Bus deleted successfully!");
-            window.location.reload() ;
+            window.location.reload();
         },
         error: function(error) {
             alert("Error deleting Bus: " + error.responseText);
-            window.location.reload() ;
+            window.location.reload();
         },
     });
 });
+
     });
 
     function showAddFeild(){
@@ -126,17 +134,25 @@ $('#example').on('click', '.delete-button', function() {
     }
     
     function editBus() {
+        var isConfirmed = confirm("Are you sure you want to update this bus?");
+    
+        if (!isConfirmed) {
+            return;
+        }
+    
         var driverId = document.getElementById("driverName").value;
         var isWorking = document.getElementById("isWorking").value;
-        var id = document.getElementById("idBus").value ;
+        var id = document.getElementById("idBus").value;
+        
         var bus = {
-            id  : id , 
-            driver : { 
-                userID : driverId 
+            id: id,
+            driver: {
+                userID: driverId
             },
-            isWorking : isWorking
-        }
-        JSON.stringify(bus.driver);
+            isWorking: isWorking
+        };
+    
+    
         $.ajax({
             url: "https://global-memento-407716.uc.r.appspot.com/Admin/EditBus",
             method: "POST",
@@ -146,14 +162,15 @@ $('#example').on('click', '.delete-button', function() {
             data: JSON.stringify(bus),
             success: function (data) {
                 alert("Bus Updated Successfully!!!");
-                window.location.reload() ; 
+                window.location.reload();
             },
             error: function (error) {
                 alert("Error in updating bus");
                 window.location.reload();
             },
         });
-    } 
+    }
+    
     document.addEventListener('DOMContentLoaded', function () {
         var editUserModal = new bootstrap.Modal(document.getElementById('editUserModal'));
             editUserModal._element.addEventListener('hidden.bs.modal', function () {

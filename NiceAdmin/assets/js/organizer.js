@@ -35,37 +35,47 @@ $(document).ready(function() {
     
     $('#example').on('click', '.edit-button', function() {
         var data = $("#example").DataTable().row($(this).parents('tr')).data();
-        const editUserName = document.getElementById('editUserName');
-        const editEmail = document.getElementById('editEmail');
-        const editId = document.getElementById("id");
-        const editName = document.getElementById("editName");
-        editId.value = data.userID;
-        editUserName.value = data.username;
-        editEmail.value = data.email;
-        editName.value = data.name ; 
-        $('#editUserModal').modal('show');
-});
+        var isConfirmed = confirm("Are you sure you want to edit this user?");
+        if (isConfirmed) {
+            const editUserName = document.getElementById('editUserName');
+            const editEmail = document.getElementById('editEmail');
+            const editId = document.getElementById("id");
+            const editName = document.getElementById("editName");
+            editId.value = data.userID;
+            editUserName.value = data.username;
+            editEmail.value = data.email;
+            editName.value = data.name ; 
+            $('#editUserModal').modal('show');
+        }
+    });
+    
     $('#example').on('click', '.delete-button', function() {
         var data = $("#example").DataTable().row($(this).parents('tr')).data();
-        var id = {
-            userID : data.userID 
+    
+        var isConfirmed = confirm("Are you sure you want to delete this user?");
+        
+        if (isConfirmed) {
+            var id = {
+                userID: data.userID 
+            };
+    
+            $.ajax({
+                url: url + "/Admin/DeleteUser",
+                method: "POST",
+                data: JSON.stringify(id),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                success: function (data) {
+                    console.log(data);
+                    window.location.reload();
+                },
+                error: function (error) {
+                    alert(error.responseText);
+                    window.location.reload();
+                },
+            });
         }
-        console.log(id);
-        $.ajax({
-            url : url + "/Admin/DeleteUser" ,
-            method :"POST" ,
-            data : JSON.stringify(id),
-            headers: {
-                'Content-Type': 'application/json',
-            },     
-            success: function (data) {
-                console.log(data);
-                window.location.reload();
-            },
-            error: function (error) {
-                alert(error.responseText);
-                window.location.reload();
-            },
-        });
     });
+    
     });
